@@ -1,0 +1,16 @@
+<core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:core="sap.ui.core"
+   controllerName="opensap.myapp.controller.RegistroPendenciaDialog">
+   <Dialog
+      title="Pendência {/Customers('ALFKI')/CustomerID} para tratar.">
+	  
+	  	<content>
+			<Text text="Detalhes do Registro" />
+		</content>
+		<endButton>
+		 	<Button text="Fechar" press="onPressCloseDialog" />
+		</endButton>
+	  
+   </Dialog>
+</core:FragmentDefinition>

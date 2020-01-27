@@ -1,0 +1,85 @@
+<mvc:View displayBlock="true" 
+		xmlns:mvc="sap.ui.core.mvc" 
+		xmlns:core="sap.ui.core" 
+		xmlns:l="sap.ui.layout" 
+		xmlns:f="sap.ui.layout.form"
+		xmlns="sap.m"
+		controllerName="opensap.myapp.controller.App">
+	<Page title="Painel de Pendências"/>
+
+	<Toolbar>
+		<Title text="Pesquisar por: "/>
+		<ToolbarSpacer/>
+		<SearchField width="50%" 
+					 placeholder="Pesquise pela Cidade Desejada"
+					 search=".onFilterPendencias"/>
+	</Toolbar>
+
+	<Table id="tabelaPendenciasId"
+			alternateRowColors="true"
+			headerText="Pendências do ASAP"
+			items="{
+		path:'/Customers',
+		sorter: {
+		path: 'CustomerID',
+		descending: false
+		}
+		}">
+
+		<headerToolbar>
+			<OverflowToolbar>
+				<Title text="Lista de Pendências" level="H2"/>
+				<ToolbarSpacer/>
+				<Button icon="sap-icon://sort"
+						tooltip="Ordenar por"
+						press="handleSortButtonPressed" />
+				<Button	icon="sap-icon://download" 
+						tooltip="Baixar"
+						press="onDataExport" />
+			</OverflowToolbar>
+		</headerToolbar>
+
+		<columns>
+			<Column>
+				<header>
+					<Text text="ID" />
+				</header>
+			</Column>
+			<Column>
+				<header>
+					<Text text="Nome" />
+				</header>
+			</Column>
+			<Column>
+				<header>
+					<Text text="Endereço" />
+				</header>
+			</Column>
+			<Column>
+				<header>
+					<Text text="Cidade" />
+				</header>
+			</Column>
+			<Column>
+				<header>
+					<Text text="Ações" />
+				</header>
+			</Column>
+		</columns>
+		<ColumnListItem>
+			<ObjectIdentifier
+					title="{CustomerID}"
+					text="{ContactName}" />
+			<Text text="{ContactTitle}" />
+			<Text text="{Address}" />
+			<Text text="{City}" />
+			<cells>
+				<HBox>
+					<Button icon="sap-icon://detail-view" type="Transparent" tooltip="Visualizar" press="onPressViewRegistroPendencia"/>
+					<Button icon="sap-icon://begin" type="Transparent" tooltip="Reprocessar" press="onPressReprocessRegistroPendencia"/>
+					<Button icon="sap-icon://decline" type="Transparent" tooltip="Cancelar" press="onPressCancelRegistroPendencia"/>
+				</HBox>
+			</cells>
+		</ColumnListItem>
+	</Table>
+</mvc:View>
